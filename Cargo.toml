@@ -1,0 +1,7 @@
+[package]
+name = "hide-wallpaper-engine-borders"
+version = "0.1.0"
+edition = "2024"
+
+[dependencies]
+xcb = "1.7.0"
