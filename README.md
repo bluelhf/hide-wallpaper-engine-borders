@@ -1,3 +1,6 @@
+![GitHub Release](https://img.shields.io/github/v/release/bluelhf/hide-wallpaper-engine-borders?include_prereleases&sort=semver&labelColor=%23555&color=%23fcba03)
+ ![GitHub branch check runs](https://img.shields.io/github/check-runs/bluelhf/hide-wallpaper-engine-borders/main?color=%23fcba03) ![GitHub last commit](https://img.shields.io/github/last-commit/bluelhf/hide-wallpaper-engine-borders?color=%23fcba03)
+
 # hide-wallpaper-engine-borders
 
 **hide-wallpaper-engine-borders** is a small utility for X11 that hides the blue glow around the Wallpaper Engine GUI. Since Wine renders these as override-redirect windows, they are not managed by the window manager and render improperly.
