@@ -31,8 +31,28 @@ jobs:
         with:
           targets: ${{ matrix.target }}
 
+      - name: Rust Cache
+        uses: Swatinem/rust-cache@v2
+        with:
+          key: ${{ matrix.target }}
+
+      - name: Cache APT dependencies
+        id: cache-apt
+        uses: actions/cache@v4
+        with:
+          path: |
+            /var/cache/apt/archives
+            /var/lib/apt/lists
+          key: ${{ matrix.os }}-apt-${{ matrix.target }}-libx11-xcb-dev
+          restore-keys: |
+            ${{ matrix.os }}-apt-${{ matrix.target }}-
+
       - name: Install dependencies
-        run: sudo apt-get update && sudo apt-get install -y libx11-xcb-dev
+        run: |
+          if [ "${{ steps.cache-apt.outputs.cache-hit }}" != "true" ]; then
+            sudo apt-get update
+          fi
+          sudo apt-get install -y libx11-xcb-dev
 
       - name: Build
         run: cargo build --release --target ${{ matrix.target }}
