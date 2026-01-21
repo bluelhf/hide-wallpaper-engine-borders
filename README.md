@@ -1,5 +1,5 @@
-![GitHub Release](https://img.shields.io/github/v/release/bluelhf/hide-wallpaper-engine-borders?include_prereleases&sort=semver&labelColor=%23555&color=%23fcba03)
- ![GitHub branch check runs](https://img.shields.io/github/check-runs/bluelhf/hide-wallpaper-engine-borders/main?color=%23fcba03) ![GitHub last commit](https://img.shields.io/github/last-commit/bluelhf/hide-wallpaper-engine-borders?color=%23fcba03)
+![GitHub Release](https://img.shields.io/github/v/release/bluelhf/hide-wallpaper-engine-borders?include_prereleases&sort=semver&labelColor=%23555&color=%23dea584)
+ ![GitHub branch check runs](https://img.shields.io/github/check-runs/bluelhf/hide-wallpaper-engine-borders/main?color=%23dea584) ![GitHub last commit](https://img.shields.io/github/last-commit/bluelhf/hide-wallpaper-engine-borders?color=%23dea584)
 
 # hide-wallpaper-engine-borders
 
