@@ -19,40 +19,33 @@ jobs:
         include:
           - os: ubuntu-24.04
             target: x86_64-unknown-linux-gnu
-
           - os: ubuntu-24.04-arm
             target: aarch64-unknown-linux-gnu
 
     steps:
       - uses: actions/checkout@v4
 
+      - name: Cache Rust + Cargo
+        uses: actions/cache@v4
+        with:
+          path: |
+            ~/.rustup/toolchains
+            ~/.cargo/registry
+            ~/.cargo/git
+            target
+          key: rust-cargo-${{ matrix.target }}-${{ runner.os }}-${{ hashFiles('**/Cargo.lock') }}
+          restore-keys: |
+            rust-cargo-${{ matrix.target }}-${{ runner.os }}-
+
       - name: Install Rust
         uses: dtolnay/rust-toolchain@stable
         with:
           targets: ${{ matrix.target }}
 
-      - name: Rust Cache
-        uses: Swatinem/rust-cache@v2
+      - uses: awalsh128/cache-apt-pkgs-action@latest
         with:
-          key: ${{ matrix.target }}
-
-      - name: Cache APT dependencies
-        id: cache-apt
-        uses: actions/cache@v4
-        with:
-          path: |
-            /var/cache/apt/archives
-            /var/lib/apt/lists
-          key: ${{ matrix.os }}-apt-${{ matrix.target }}-libx11-xcb-dev
-          restore-keys: |
-            ${{ matrix.os }}-apt-${{ matrix.target }}-
-
-      - name: Install dependencies
-        run: |
-          if [ "${{ steps.cache-apt.outputs.cache-hit }}" != "true" ]; then
-            sudo apt-get update
-          fi
-          sudo apt-get install -y libx11-xcb-dev
+          packages: libx11-xcb-dev
+          version: 1.0
 
       - name: Build
         run: cargo build --release --target ${{ matrix.target }}
